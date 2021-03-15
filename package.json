@@ -1,0 +1,31 @@
+{
+  "name": "chitragupta",
+  "version": "1.0.0",
+  "description": "An easy to install node module to convert unstructured logs into informative structured logs",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/browserstack/chitragupta-node.git"
+  },
+  "keywords": [
+    "chitragupta",
+    "logger",
+    "logging",
+    "json",
+    "structured",
+    "logs"
+  ],
+  "author": "Mit Parekh <data@browserstack.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/browserstack/chitragupta-node/issues"
+  },
+  "homepage": "https://github.com/browserstack/chitragupta-node#readme",
+  "dependencies": {
+    "cls-hooked": "^4.2.2",
+    "uuid": "^8.3.2"
+  }
+}
