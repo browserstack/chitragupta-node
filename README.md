@@ -64,6 +64,11 @@ Chitragupta.setupProcessLogger('processing_crazy_stuff', process_some_crazy_stuf
 ```
 ## Contributing
 
+Run eslint using the following command
+```bash
+# Please install the eslint supported node version using `nvm install v12.14.1`
+npx eslint .
+```
 Bug reports and pull requests are welcome on GitHub at https://github.com/browserstack/chitragupta-node.
 
 ## License
