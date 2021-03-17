@@ -16,7 +16,8 @@
     "logging",
     "json",
     "structured",
-    "logs"
+    "logs",
+    "winston"
   ],
   "author": "Mit Parekh <data@browserstack.com>",
   "license": "MIT",
