@@ -47,7 +47,7 @@ const logger = winston.createLogger({
 });
 ```
 
-### Setting Up Server and Services
+### Setting Up Server, Services and Background Workers
 
 For web servers built with node [http](https://nodejs.org/api/http.html) package
 ```node
@@ -66,7 +66,7 @@ var server = http.createServer(function(request, response) {
 server.listen(8080);
 ```
 
-For processes written using node
+For processes/services
 ```node
 function process_some_crazy_stuff(a, b, c) {
   logger.log('info', a);
@@ -76,6 +76,20 @@ function process_some_crazy_stuff(a, b, c) {
 
 // Chitragupta.setupProcessLogger(uniqueNameOfTheProcess, functionToBeCalled, all, the, args, that, you, would, like, to, pass);
 Chitragupta.setupProcessLogger('processing_crazy_stuff', process_some_crazy_stuff, 1, true, 45);
+```
+
+For workers
+```node
+const getWorkFromRedis = (n, first_run) =>
+  getCurrentQueue()
+    .then(someAwesomeStuff)
+    .catch(e => {
+      logger.log('info', 'Exceptions');
+      setTimeout(getWorkFromRedis, 1000);
+    });
+
+// Chitragupta.setupProcessLogger(uniqueNameOfTheProcess, functionToBeCalled, all, the, args, that, you, would, like, to, pass);
+Chitragupta.setupWorkerLogger('redisWorker', getWorkFromRedis, 1, true);
 ```
 ## Contributing
 
