@@ -10,9 +10,10 @@ npm install https://github.com/browserstack/chitragupta-node
 
 ## Usage
 
-For web servers built with node [http](https://nodejs.org/api/http.html) package
+### Setting Up the Logger
+
+#### Winston 2.x
 ```node
-const http = require("http");
 const winston = require('winston');
 const { Chitragupta } = require('chitragupta');
 
@@ -25,7 +26,32 @@ var logger = new winston.Logger({
       formatter: Chitragupta.jsonLogFormatter
     })]
 });
+```
 
+#### Winston 3.x
+```node
+const winston = require('winston');
+const { Chitragupta } = require('chitragupta');
+
+const jsonLogFormatter = winston.format.printf( ({ level, message, ...meta}) => {
+  const options = {level: level, message: message, meta: meta};
+  return Chitragupta.jsonLogFormatter(options);
+});
+
+const logger = winston.createLogger({
+  transports: [
+    new winston.transports.Console({
+      format: jsonLogFormatter,
+    })
+  ],
+});
+```
+
+### Setting Up Server and Services
+
+For web servers built with node [http](https://nodejs.org/api/http.html) package
+```node
+const http = require("http");
 
 // Initialize and add meta data for the server
 function requestHandler(request, response) {
@@ -42,17 +68,6 @@ server.listen(8080);
 
 For processes written using node
 ```node
-const winston = require('winston');
-const { Chitragupta } = require('chitragupta');
-
-// Configure your logger's formatter
-const logger = new (winston.Logger)({
-  level: 'info',
-  transports: [new (winston.transports.Console)({
-    formatter: Chitragupta.jsonLogFormatter
-  })],
-});
-
 function process_some_crazy_stuff(a, b, c) {
   logger.log('info', a);
   logger.log('info', b);
