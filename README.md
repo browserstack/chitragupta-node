@@ -41,7 +41,7 @@ const jsonLogFormatter = winston.format.printf( ({ level, message, ...meta}) => 
 const logger = winston.createLogger({
   transports: [
     new winston.transports.Console({
-      format: winston.format.combine(jsonLogFormatter),
+      format: jsonLogFormatter,
     })
   ],
 });
