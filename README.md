@@ -80,15 +80,22 @@ Chitragupta.setupProcessLogger('processing_crazy_stuff', process_some_crazy_stuf
 
 For workers
 ```node
-const getWorkFromRedis = (n, first_run) =>
+const processFromQueue = (n) => {
   getCurrentQueue()
     .then(someAwesomeStuff)
     .catch(e => {
       logger.log('info', 'Exceptions');
       setTimeout(getWorkFromRedis, 1000);
     });
+}
 
-// Chitragupta.setupProcessLogger(uniqueNameOfTheProcess, functionToBeCalled, all, the, args, that, you, would, like, to, pass);
+const getWorkFromRedis = (n, first_run) => {
+  // Use the following function to set the worker job id if required
+  // Chitragupta.setWorkerJobId('unique-job-id', functionToBeCalled, all, the, args, that, you, would, like, to, pass);
+  Chitragupta.setWorkerJobId(jobId, processFromQueue, n);
+}
+
+// Chitragupta.setupWorkerLogger(uniqueNameOfTheWorker, functionToBeCalled, all, the, args, that, you, would, like, to, pass);
 Chitragupta.setupWorkerLogger('redisWorker', getWorkFromRedis, 1, true);
 ```
 ## Contributing
