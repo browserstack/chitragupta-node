@@ -34,7 +34,7 @@ const winston = require('winston');
 const { Chitragupta } = require('chitragupta');
 
 const jsonLogFormatter = winston.format.printf( ({ level, message, ...meta}) => {
-  const options = {level: level, message: message, meta: meta};
+  const options = {level: level, message: message, meta: meta, data: data};
   return Chitragupta.jsonLogFormatter(options);
 });
 
