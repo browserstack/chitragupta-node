@@ -34,7 +34,7 @@ const winston = require('winston');
 const { Chitragupta } = require('chitragupta');
 
 const jsonLogFormatter = winston.format.printf( ({ level, message, ...meta}) => {
-  const options = {level: level, message: message, meta: meta, data: data};
+  const options = {level: level, message: message, meta: meta};
   return Chitragupta.jsonLogFormatter(options);
 });
 
@@ -59,6 +59,12 @@ function requestHandler(request, response) {
   response.end();
 }
 
+// OR
+function requestHandler(request, response) {
+  logger.log('info', 'processing request', {data: {name: 'process_name', execution_id: 'some_unique_id'}});
+  response.end();
+}
+
 var server = http.createServer(function(request, response) {
   // Chitragupta.setupServerLogger(loggerObject, request, response, userId, requestHandler);
   Chitragupta.setupServerLogger(logger, request, response, 123, requestHandler);
@@ -74,6 +80,12 @@ function process_some_crazy_stuff(a, b, c) {
   logger.log('info', c);
 }
 
+// OR
+function process_some_crazy_stuff(a, b, c) {
+  logger.log('info', a, {data: {name: 'process_name', execution_id: 'some_unique_id'}});
+  logger.log('info', b, {data: {name: 'process_name', execution_id: 'some_unique_id'}});
+}
+
 // Chitragupta.setupProcessLogger(uniqueNameOfTheProcess, functionToBeCalled, all, the, args, that, you, would, like, to, pass);
 Chitragupta.setupProcessLogger('processing_crazy_stuff', process_some_crazy_stuff, 1, true, 45);
 ```
@@ -85,6 +97,16 @@ const processFromQueue = (n) => {
     .then(someAwesomeStuff)
     .catch(e => {
       logger.log('info', 'Exceptions');
+      setTimeout(getWorkFromRedis, 1000);
+    });
+}
+
+// OR
+const processFromQueue = (n) => {
+  getCurrentQueue()
+    .then(someAwesomeStuff)
+    .catch(e => {
+      logger.log('info', 'Exceptions', {data: {name: 'process_name', execution_id: 'some_unique_id'}});
       setTimeout(getWorkFromRedis, 1000);
     });
 }
