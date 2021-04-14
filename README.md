@@ -10,6 +10,10 @@ npm install https://github.com/browserstack/chitragupta-node
 
 ## Usage
 
+The informative structured logging can be achieved in 2 steps:
+1. Setting up the logger
+2. Setting up the contexts in server/process/worker
+
 ### Setting Up the Logger
 
 #### Winston 2.x
@@ -47,7 +51,7 @@ const logger = winston.createLogger({
 });
 ```
 
-### Setting Up Server, Services and Background Workers
+### Setting up contexts in Server, Services and Background Workers
 
 For web servers built with node [http](https://nodejs.org/api/http.html) package
 ```node
