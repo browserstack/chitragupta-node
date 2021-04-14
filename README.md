@@ -121,8 +121,6 @@ const processFromQueue = (n) => {
     });
 }
 ```
-
-
 ## Contributing
 
 Run eslint using the following command
