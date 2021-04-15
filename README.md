@@ -69,7 +69,13 @@ var server = http.createServer(function(request, response) {
 });
 server.listen(8080);
 ```
-
+OR
+```node
+function requestHandler(request, response) {
+  logger.log('info', 'processing request', {'data': {'request': {'method': 'POST'}}});
+  response.end();
+}
+```
 For processes/services
 ```node
 function process_some_crazy_stuff(a, b, c) {
@@ -81,7 +87,13 @@ function process_some_crazy_stuff(a, b, c) {
 // Chitragupta.setupProcessLogger(uniqueNameOfTheProcess, functionToBeCalled, all, the, args, that, you, would, like, to, pass);
 Chitragupta.setupProcessLogger('processing_crazy_stuff', process_some_crazy_stuff, 1, true, 45);
 ```
-
+OR
+```node
+function process_some_crazy_stuff(a, b, c) {
+  logger.log('info', a, {'data': {'name': 'process_name', 'execution_id': 'some_unique_id'}});
+  logger.log('info', b, {'data': {'name': 'some_other_process_name', 'execution_id': 'some_other_unique_id'}});
+}
+```
 For workers
 ```node
 const processFromQueue = (n) => {
@@ -101,6 +113,17 @@ const getWorkFromRedis = (n, first_run) => {
 
 // Chitragupta.setupWorkerLogger(uniqueNameOfTheWorker, functionToBeCalled, all, the, args, that, you, would, like, to, pass);
 Chitragupta.setupWorkerLogger('redisWorker', getWorkFromRedis, 1, true);
+```
+OR
+```node
+const processFromQueue = (n) => {
+  getCurrentQueue()
+    .then(someAwesomeStuff)
+    .catch(e => {
+      logger.log('info', 'Exceptions', {'data': {'worker_name': 'worker_name', 'thread_id': 'some_thread_id'}});
+      setTimeout(getWorkFromRedis, 1000);
+    });
+}
 ```
 ## Contributing
 
