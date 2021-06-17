@@ -126,8 +126,7 @@ const processFromQueue = (n) => {
 }
 ```
 ### Additional Features
-1. Every log line should be identified with a unique kind.
-2. For the logs where `log.kind` is missing, first 40 chars of dynamic_data is populated to uniquely identify each log in a restricted fashion.
+For the logs where `log.kind` is missing, first 40 chars of dynamic_data is populated to uniquely identify each log in a restricted fashion.
 
 ## Contributing
 
