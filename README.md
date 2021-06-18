@@ -125,6 +125,10 @@ const processFromQueue = (n) => {
     });
 }
 ```
+### Additional Features
+1. For the logs where `log.kind` is missing, first 40 chars of dynamic_data is populated to uniquely identify each log in a restricted fashion.
+2. For the logs where no contexts are set, ie. server, process or worker are not set, server format category and version is populated.
+
 ## Contributing
 
 Run eslint using the following command
