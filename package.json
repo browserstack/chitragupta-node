@@ -1,6 +1,6 @@
 {
   "name": "chitragupta",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "An easy to install node module to convert unstructured logs into informative structured logs",
   "main": "lib/index.js",
   "scripts": {
