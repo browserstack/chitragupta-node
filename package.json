@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/browserstack/chitragupta-node#readme",
   "dependencies": {
-    "cls-hooked": "git+ssh://git@github.com/RNachmanyAnyVision/cls-hooked.git#patch-2",
+    "cls-hooked": "git+ssh://git@github.com/RNachmanyAnyVision/cls-hooked.git#e6024890b9a9039cdfd88840a701f60f801ce902",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
