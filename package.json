@@ -1,10 +1,10 @@
 {
   "name": "chitragupta",
-  "version": "1.7.6",
+  "version": "1.7.7",
   "description": "An easy to install node module to convert unstructured logs into informative structured logs",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node test/context.js"
+    "test": "node test/context.js && node test/headers.js"
   },
   "repository": {
     "type": "git",
