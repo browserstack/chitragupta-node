@@ -5,6 +5,9 @@ on:
     branches: ["master", "main"]
   push:
     branches: ["master", "main"]
+  schedule:
+    - cron: "30 4 * * 1"
+  workflow_dispatch:
 
 permissions:
   contents: read
