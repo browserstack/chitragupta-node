@@ -4,7 +4,7 @@
   "description": "An easy to install node module to convert unstructured logs into informative structured logs",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node test/context.js && node test/headers.js"
+    "test": "node test/context.js && node test/headers.js && node test/params.js"
   },
   "repository": {
     "type": "git",
