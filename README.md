@@ -130,6 +130,8 @@ const processFromQueue = (n) => {
 2. For the logs where no contexts are set, ie. server, process or worker are not set, server format category and version is populated.
 3. `request.request_id` and the `request_start_time` can be set manually if required.
 4. Credential-bearing request headers (`authorization`, `cookie`, `set-cookie`, `x-api-key`, `x-auth-token`, `proxy-authorization`, `www-authenticate`) are logged as `[REDACTED]`. The header name is kept so the log still shows it was sent. Add your own with `Chitragupta.extendSensitiveHeaders(['x-tenant-secret'])`.
+5. Credential-bearing query parameters (`access_token`, `refresh_token`, `id_token`, `token`, `api_key`, `apikey`, `api_token`, `private_token`, `client_secret`, `secret`, `password`, `signature`, `x-amz-signature`, `x-amz-credential`, `x-amz-security-token`) are logged as `[REDACTED]` in `data.request.params`, keeping the parameter name. Add your own with `Chitragupta.extendSensitiveParams(['code'])`.
+6. `data.request.endpoint` and `params` come from `request.originalUrl` when present (Express), so routes mounted on a sub-router log their full path.
 
 ## Contributing
 
